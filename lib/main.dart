@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:prague_app/model/slidermodel.dart';
+import 'package:prague_app/view/homepage.dart';
+import 'package:prague_app/widgets/widgets.dart';
+
+
 
 void main() {
   runApp(MyApp());
@@ -9,12 +15,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
+
       title: 'Prague App',
       theme: ThemeData(
 
         primarySwatch: Colors.deepOrange,
       ),
-      home: SliderPages(),
+      home: HomePage(),
+
     );
   }
 }
@@ -24,46 +33,29 @@ class SliderPages extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
+      body: IntroductionPages(),
+      bottomNavigationBar: BottomAppBar(
 
-        color: Colors.white,
+        color: Colors.deepOrange,
+        elevation: 70,
         child: Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage("asset/images/slider1.jpg"),
-              fit: BoxFit.cover,
+          height: 50,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 5,right: 5),
+            child: Row(
+
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+
+                TextButton(onPressed: (){
+                  Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>HomePage()), (route) => false);
+                }, child: Text("Get Started",style: GoogleFonts.cinzel(fontSize: 20,color: Colors.white),)),
+
+              ],
             ),
           ),
-          child: Column(
-
-            children: [
-              SizedBox(height: 350,),
-              Container(
-                padding: EdgeInsets.only(left: 10),
-                  alignment: Alignment.centerLeft,
-                  child: Text("",style: TextStyle(fontSize: 18,color: Colors.white),)),
-              Container(
-                padding: EdgeInsets.only(left: 10),
-                  alignment: Alignment.centerLeft,
-                  child: Text("Welcome to PRAGUE COOLPASS",style: TextStyle(fontSize: 26,color: Colors.white),)),
-              Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Text("The mobile app of prague CoolPass (formaerly Prague Card) will guide "
-                    "you to more than 100 best attractions in prague and enable you to buy a moile Pass or "
-                    "smart Card to enjoy free entries to these attractions.",style: TextStyle(color: Colors.white,fontSize: 15),),
-              ),
-
-              Container(
-                height: 125,
-                padding: EdgeInsets.all(40),
-                  child: RaisedButton(elevation: 20,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10)
-                    ),
-                    onPressed: (){},child: Center(child: Text("Get Started",style: TextStyle(fontSize: 16,color: Colors.white),)),color: Colors.deepOrange,))
-            ],
-          ),
         ),
+
       ),
     );
   }
