@@ -10,6 +10,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  bool _favoriteActivate=false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,79 +28,117 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
-      body: Container(
-        color: Colors.white30,
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
         child: Column(
+          mainAxisSize: MainAxisSize.max,
           children: [
-            Expanded(
-
-                flex: 1,
-                child: Container(
-                  padding: EdgeInsets.only(top: 5,left: 5,right: 5),
-                  child: Column(
+            Container(
+              padding: EdgeInsets.only(top: 5, left: 5, right: 5),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                        Homepage_Button("MY COOLPASS", Icons.smartphone),
-                          Homepage_Button("ATTRACTIONS", Icons.attractions),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Homepage_Button("TIPS & ALERRTS", Icons.warning_outlined),
-                          Homepage_Button("BUY COOLPASS", Icons.credit_card),
-                        ],
-                      ),
-
+                      Homepage_Button("MY COOLPASS", Icons.smartphone),
+                      Homepage_Button("ATTRACTIONS", Icons.attractions),
                     ],
                   ),
-                )
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Homepage_Button("TIPS & ALERRTS", Icons.warning_outlined),
+                      Homepage_Button("BUY COOLPASS", Icons.credit_card),
+                    ],
+                  ),
+                ],
+              ),
             ),
             Container(
               padding: EdgeInsets.only(left: 12),
-
               alignment: Alignment.centerLeft,
-              child: Text("MOST POPULAR",style: GoogleFonts.rubik(fontSize: 20),),
+              child: Text(
+                "MOST POPULAR",
+                style: GoogleFonts.rubik(fontSize: 20),
+              ),
             ),
-            Expanded(
-              flex: 1,
-             child: ListView.builder(
-                 physics: NeverScrollableScrollPhysics(),
-                 itemCount: pageItemList.length,
-                 itemBuilder: (context,index){
-               return Container(
-                 height: 200,
-                 padding: EdgeInsets.all(10),
-                 margin: EdgeInsets.all(10),
-                 decoration: BoxDecoration(
-                   image: DecorationImage(
-                     image: AssetImage(pageItemList[index].urlname),
-                     fit: BoxFit.cover,
-                   ),
-                 ),
-                 child: Column(
-                   mainAxisAlignment: MainAxisAlignment.end,
-                   children: [
+            Container(
+              child: ListView.builder(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  itemCount: pageItemList.length,
+                  itemBuilder: (context, index) {
+                    return InkWell(
 
-                     Container(
-                         padding: EdgeInsets.only(left: 10),
-                         alignment: Alignment.centerLeft,
-                         child: Text(
-                           pageItemList[index].title,
-                           style:
-                           GoogleFonts.ubuntu(fontSize: 26, color: Colors.white),
-                         )),
+                      onTap: (){
 
+                      },
+                      child: Container(
+                        height: 200,
 
+                        margin: EdgeInsets.all(5),
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage(pageItemList[index].urlname),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  padding: EdgeInsets.all(2),
 
+                                  color: Colors.orangeAccent,
+                                  child: Text("INCLUDED"),
+                                ),
+                                Container(
+                                  padding: EdgeInsets.only(top: 5),
+                                  child: Row(
+                                    children: [
+                                      Icon(
+                                        Icons.attractions,
+                                        color: Colors.white,
+                                        size: 30.0,
+                                        semanticLabel:
+                                            'Text to announce in accessibility modes',
+                                      ),
+                                      IconButton(onPressed: (){
+                                        setState(() {
+                                          _favoriteActivate ? _favoriteActivate = false : _favoriteActivate = true;
+                                          print(_favoriteActivate);
 
-
-                   ],
-                 ),
-               );
-             }),
+                                        });
+                                      }, icon: _favoriteActivate? Icon(Icons.favorite_outlined,color: Colors.white,) : Icon(Icons.favorite_border,color: Colors.white,))
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Container(
+                              padding: EdgeInsets.all(4),
+                              alignment: Alignment.bottomLeft,
+                              child: Text(
+                                pageItemList[index].title,
+                                style: GoogleFonts.ubuntu(
+                                    fontSize: 18, color: Colors.white),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    );
+                  }),
+            ),
+            Container(
+              width: MediaQuery.of(context).size.width /2 +100,
+              margin: EdgeInsets.all(10),
+              height: 50,
+              child: RaisedButton(color: Colors.orange
+                ,onPressed: (){},child: Text("Show The Attractions",style: GoogleFonts.ubuntu(fontSize: 20),),),
             )
           ],
         ),
