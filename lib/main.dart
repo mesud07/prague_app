@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:prague_app/model/slidermodel.dart';
+import 'package:prague_app/view/attractions_page.dart';
+import 'package:prague_app/view/deneme1.dart';
+import 'package:prague_app/view/drawermenuitems/coolpass/prague_coolpass_card.dart';
 import 'package:prague_app/view/homepage.dart';
 import 'package:prague_app/widgets/widgets.dart';
 
@@ -15,14 +18,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+
       debugShowCheckedModeBanner: false,
 
       title: 'Prague App',
       theme: ThemeData(
 
         primarySwatch: Colors.deepOrange,
+        primaryIconTheme: IconThemeData(color: Colors.black)
       ),
-      home: HomePage(),
+      home: AttractionsPage(),
 
     );
   }

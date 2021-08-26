@@ -1,17 +1,29 @@
 class TopAttractions{
 
-  String id;
-  String type;
-  String phone;
-  String website;
+  final String id;
+  final String type;
+  final String phone;
+  final String website;
+  final String content;
 
-  TopAttractions({required this.id,required this.type,required this.phone,required this.website});
+  //final List<String> webimages;
+
+
+  TopAttractions({required this.id,
+    required this.type,
+    required this.phone,
+    required this.website,
+    required this.content,
+    //required this.webimages,
+    });
 
   factory TopAttractions.fromJson(Map<String, dynamic> json)=> TopAttractions(
-    id:json['id'],
+    id:json['_id'],
     type:json['type'],
     phone:json['phone'],
-    website:json['website'],
+    website:json['website'] ,
+    content: json['content'],
+    //webimages: List<String>.from(json['webimages']),
 
   );
 

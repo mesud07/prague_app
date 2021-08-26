@@ -6,7 +6,7 @@ import 'package:prague_app/model/top_attractions.dart';
 
 class ListTopService {
   final _baseUrl = 'https://api2.praguecoolpass.com';
-  final _endPointListUser = 'object/attraction/top-attractions';
+  final _endPointListUser = 'category';
 
   Future<List> getListTop() async {
 
@@ -23,7 +23,7 @@ class ListTopService {
       final _decodedBody = jsonDecode(_jsonBody);
 
       /// JSON (List) To Dart (Object)
-      final _listTopAttractions = List<TopAttractions>.from(_decodedBody.map((x) => TopAttractions.fromJson(x)));
+     // final _listTopAttractions = List<TopAttractions>.from(_decodedBody.map((x) => TopAttractions.fromJson(x)));
 
       /// Response: Dart Object
       return _decodedBody;
@@ -35,17 +35,17 @@ class ListTopService {
   }
 }
 
-Future<List> loadData() async {
-  List topAttractions = [];
+Future<List> loadCategoryData() async {
+  List categoryAttractions = [];
   try {
     // This is an open REST API endpoint for testing purposes
     const API =
-        'https://api2.praguecoolpass.com/object/attraction/top-attractions';
+        'https://api2.praguecoolpass.com/category';
     final http.Response response = await http.get(Uri.parse(API));
-    topAttractions = json.decode(response.body);
+    categoryAttractions = json.decode(response.body);
   } catch (err) {
     print(err);
   }
 
-  return topAttractions;
+  return categoryAttractions;
 }

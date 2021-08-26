@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:prague_app/model/slidermodel.dart';
+import 'package:prague_app/view/homepage.dart';
 import 'package:prague_app/widgets/slide_dots.dart';
 import 'dart:async';
 
@@ -11,7 +12,8 @@ class IntroductionPages extends StatefulWidget {
 }
 
 class _IntroductionPagesState extends State<IntroductionPages> {
-  int _bottomindex = 0;
+  int _selectedIndex=0;
+
   int currentpage = 0;
 
   final PageController _pageController = PageController(initialPage: 0);
@@ -48,11 +50,19 @@ class _IntroductionPagesState extends State<IntroductionPages> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 0,
+        selectedIconTheme: IconThemeData(size: 30,color: Colors.white ),
+        unselectedFontSize: 15,
+
+        elevation: 20,
+        selectedFontSize: 12,
+        fixedColor: Colors.black,
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
 
         backgroundColor: Colors.orange,
         items: [
           BottomNavigationBarItem(
+
               icon: Icon(Icons.arrow_forward_ios,color: Colors.white,), title: Text("Skip",style: GoogleFonts.rubik(color: Colors.black),)),
           BottomNavigationBarItem(
               icon: Icon(Icons.home,color: Colors.white,), title: Text("Go Home",style: GoogleFonts.rubik(color: Colors.black),))
@@ -123,4 +133,19 @@ class _IntroductionPagesState extends State<IntroductionPages> {
       ),
     );
   }
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+      if(_selectedIndex==0){
+        currentpage++;
+        setState(() {
+          _onPageChanged(currentpage);
+        });
+      }else{
+        Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_)=>HomePage()), (route) => false);
+      }
+      debugPrint("$_selectedIndex");
+    });
+  }
+
 }
