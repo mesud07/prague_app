@@ -67,27 +67,26 @@ class _AttractionsPageState extends State<AttractionsPage> {
                   IconButton(onPressed: (){}, icon: Icon(Icons.favorite_outlined,),),
                   Container(
 
+                    alignment: Alignment.center,
+                    height: 100,
+                    width: 220,
+
                     decoration: BoxDecoration(
+                      border: Border.all(width: 1,color: Colors.grey),
                       borderRadius: BorderRadius.circular(30),
+                      color: Colors.white,
                     ),
                     child: Row(
-                    children: [
-                      ElevatedButton(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
 
-                          onPressed: (){}, child: Row(
-                        children: [
-                          Icon(Icons.place),
-                          Text("Map")
-                  ],)),
-                      ElevatedButton(onPressed: (){}, child: Row(
-                        children: [
-                          Icon(Icons.line_style),
-                          Text("Filters")
-                        ],
-                      ),),
+                        ElevatedButton.icon(icon: Icon(Icons.location_on,color: Colors.black,),label: Text("Map",style: TextStyle(color: Colors.black),),onPressed: (){},style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.white), ),),
+                        Divider(height: 100,indent: 2.0,color: Colors.black,),
+                        ElevatedButton.icon(icon: Icon(Icons.filter_list,color: Colors.black,),label: Text("Filter",style: TextStyle(color: Colors.black)),onPressed: (){},style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.white),),)
 
-                    ],
-                  ),),
+
+                      ],
+                    ),),
                   IconButton(onPressed: (){}, icon: Icon(Icons.search)),
 
                 ],

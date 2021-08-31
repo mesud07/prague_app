@@ -39,6 +39,7 @@ class _BottomNavigation_BarState extends State<BottomNavigation_Bar> {
 
       }else if(_selectedIndex==1){
         debugPrint(_selectedIndex.toString());
+        Navigator.pushNamed(context,"/attractions");
 
 
       }

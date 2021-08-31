@@ -78,8 +78,8 @@ class _HomePageState extends State<HomePage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Homepage_Button("MY COOLPASS", Icons.smartphone),
-                      Homepage_Button("ATTRACTIONS", Icons.attractions),
+                      Homepage_Button("MY COOLPASS", Icons.smartphone,),
+                      Homepage_Button("ATTRACTIONS", Icons.attractions,),
                     ],
                   ),
                   Row(
@@ -119,7 +119,7 @@ class _HomePageState extends State<HomePage> {
 
                           return InkWell(
                             onTap: (){
-
+                              Navigator.pushNamed(context, "/detailpage");
                             },
                             child: Container(
                               height: 200,
@@ -216,11 +216,15 @@ class _HomePageState extends State<HomePage> {
               margin: EdgeInsets.all(10),
               height: 50,
               child: RaisedButton(color: Colors.orange
-                ,onPressed: (){},child: Text("Show The Attractions",style: GoogleFonts.ubuntu(fontSize: 20),),),
+                ,onPressed: (){Navigator.pushNamed(context, '/attractions');},child: Text("Show The Attractions",style: GoogleFonts.ubuntu(fontSize: 20),),),
             )
           ],
         ),
       ),
     );
   }
+}
+
+VoidCallback? git(BuildContext context) {
+  Navigator.pushNamed(context, "/attractions");
 }

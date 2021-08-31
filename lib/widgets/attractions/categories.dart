@@ -42,42 +42,9 @@ class _CategoriesState extends State<Categories> {
                               image: NetworkImage("https://static2.praguecoolpass.com/"+snapshot.data![index]['image'])),
                         ),
                         child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
 
-
-                                Container(
-                                  padding: EdgeInsets.all(2),
-
-                                  color: Colors.orangeAccent,
-                                  child: Text("INCLUDED"),
-                                ),
-                                Container(
-                                  padding: EdgeInsets.only(top: 5),
-                                  child: Row(
-                                    children: [
-                                      Icon(
-                                        Icons.attractions,
-                                        color: Colors.white,
-                                        size: 30.0,
-                                        semanticLabel:
-                                        'Text to announce in accessibility modes',
-                                      ),
-                                      IconButton(onPressed: (){
-                                        setState(() {
-                                          _favoriteActivate ? _favoriteActivate = false : _favoriteActivate = true;
-                                          print(_favoriteActivate);
-
-                                        });
-                                      }, icon: _favoriteActivate? Icon(Icons.favorite_outlined,color: Colors.white,) : Icon(Icons.favorite_border,color: Colors.white,))
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
                             Stack(
                               alignment: Alignment.bottomLeft,
                               children: [

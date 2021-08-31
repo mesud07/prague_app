@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:prague_app/view/drawermenuitems/coolpass/how_it_works.dart';
 class Homepage_Button extends StatelessWidget {
 String butontext;
 IconData icon;
 
-Homepage_Button(this.butontext,this.icon);
+
+Homepage_Button(this.butontext,this.icon,);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -13,7 +15,7 @@ Homepage_Button(this.butontext,this.icon);
       child: InkWell(
         splashColor: Colors.yellowAccent,
         highlightColor: Colors.black,
-        onTap: () async {},
+        onTap: (){},//=>onClick,
         child: Material(
           elevation: 4,
           shadowColor: Colors.grey,
@@ -43,6 +45,23 @@ Homepage_Button(this.butontext,this.icon);
       ),
     );
   }
+
+
 }
+//selectedBox(BuildContext context, int index) {
+//  if(index==0){
+//    return Navigator.pushNamed(context, "/");
+//  }
+//else if(index==1){
+//  return Navigator.pushNamed(context, "/attractions");
+//}
+//else if(index==2){
+//    return Navigator.pushNamed(context, "/attractions");
+//  }else{
+//
+//}
+//}
+
+
 
 

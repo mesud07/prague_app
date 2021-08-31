@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:prague_app/services/all_Attractions.dart';
+import 'package:prague_app/services/attractions_page/category_service.dart';
+import 'package:prague_app/services/attractions_page/tours_cruises.dart';
 import 'package:prague_app/services/topAttractions_service.dart';
 class Tours_Cruises extends StatefulWidget{
   @override
@@ -8,16 +11,19 @@ class Tours_Cruises extends StatefulWidget{
 
 class _Tours_CruisesState extends State<Tours_Cruises> {
   bool _favoriteActivate = false;
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return             Container(
+    return   Container(
       height: 150,
       child: FutureBuilder(
-          future: loadData(),
+          future: loadCruisesData(),
 
           builder:(BuildContext context,AsyncSnapshot<List> snapshot){
+
             if(snapshot.hasData){
+              debugPrint(snapshot.data![0]['categories'][0]);
               return ListView.builder(
                   shrinkWrap: true,
                   scrollDirection: Axis.horizontal,

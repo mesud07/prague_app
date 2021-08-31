@@ -27,6 +27,7 @@ bool _favoriteActivate = false;
 
                     return InkWell(
                       onTap: (){
+                        Navigator.pushNamed(context, "/detailpage");
 
                       },
                       child: Container(

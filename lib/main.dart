@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:prague_app/model/slidermodel.dart';
 import 'package:prague_app/view/attractions_page.dart';
 import 'package:prague_app/view/deneme1.dart';
+import 'package:prague_app/view/detailPage.dart';
 import 'package:prague_app/view/drawermenuitems/coolpass/prague_coolpass_card.dart';
 import 'package:prague_app/view/homepage.dart';
 import 'package:prague_app/widgets/widgets.dart';
@@ -23,13 +24,19 @@ class MyApp extends StatelessWidget {
 
       title: 'Prague App',
       theme: ThemeData(
-
+          textButtonTheme: TextButtonThemeData(
+            style: TextButton.styleFrom(primary: Colors.transparent),
+          ),
         primarySwatch: Colors.deepOrange,
         primaryIconTheme: IconThemeData(color: Colors.black)
       ),
-      home: AttractionsPage(),
+      initialRoute: '/',
+      routes:{
+        "/" :(context)=> HomePage(),
+        "/attractions" : (context)=> AttractionsPage(),
+        "/detailpage" : (context)=>DetailPage(),
 
-    );
+      },    );
   }
 }
 
