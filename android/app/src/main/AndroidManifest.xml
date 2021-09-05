@@ -1,6 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.prague_app">
    <application
+
         android:label="prague_app"
         android:icon="@mipmap/ic_launcher">
         <activity
@@ -37,5 +38,7 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+       <meta-data android:name="com.google.android.geo.API_KEY"
+           android:value="AIzaSyC0OEc53tpXDi61IT_8cOYDMahxTRMmMCY"/>
     </application>
 </manifest>

@@ -87,5 +87,5 @@ Future<List> loadCruisesData() async {
     print(err);
   }
 
-  return posts;
+  return filter;
 }

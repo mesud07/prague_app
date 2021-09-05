@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:prague_app/helper/sizes_helper.dart';
 import 'package:prague_app/model/slidermodel.dart';
 
-class PublicTransportMap extends StatelessWidget {
+class SaleCollection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {

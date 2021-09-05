@@ -24,11 +24,13 @@ class _Prague_DistrictsState extends State<Prague_Districts> {
                   scrollDirection: Axis.horizontal,
                   itemCount: snapshot.data!.length,
                   itemBuilder: (context, index) {
-                     debugPrint(snapshot.data![index]['order']);
+                    // debugPrint(snapshot.data![index]['order']);
+                    var _id = snapshot.data![index]["_id"];
+                   // debugPrint(_id);
 
                     return InkWell(
                       onTap: (){
-
+                        Navigator.pushNamed(context,"/filteredPage/$_id");
                       },
                       child: Container(
 
