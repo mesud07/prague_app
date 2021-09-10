@@ -64,6 +64,7 @@ class MapSampleState extends State<MapSample> {
                 margin: EdgeInsets.all(5),
 
                 child: FloatingActionButton(
+                  heroTag: "bir",
                   onPressed: _changeMap,
                   child: Icon(Icons.directions_boat),
                 ),
@@ -71,6 +72,7 @@ class MapSampleState extends State<MapSample> {
               Container(
                 margin: EdgeInsets.all(5),
                 child: FloatingActionButton(
+                  heroTag: "iki",
                   onPressed: _onAddMarkerButtonPressed,
                   child: Icon(Icons.add),
                 ),

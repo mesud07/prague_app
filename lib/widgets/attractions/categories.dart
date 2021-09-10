@@ -19,16 +19,18 @@ class _CategoriesState extends State<Categories> {
 
           builder:(BuildContext context,AsyncSnapshot<List> snapshot){
             if(snapshot.hasData){
+
               return ListView.builder(
                   shrinkWrap: true,
                   scrollDirection: Axis.horizontal,
                   itemCount: 6,
                   itemBuilder: (context, index) {
+                    var category_id =snapshot.data![index]['_id'];
                     // debugPrint(snapshot.data![index]['content']['en']['title']);
 
                     return InkWell(
                       onTap: (){
-
+                        Navigator.pushNamed(context,"/categoryFilteredPage/$category_id");
                       },
                       child: Container(
 

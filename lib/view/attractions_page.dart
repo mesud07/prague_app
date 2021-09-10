@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:prague_app/helper/datahelper.dart';
 import 'package:prague_app/helper/sizes_helper.dart';
 import 'package:prague_app/services/topAttractions_service.dart';
 import 'package:prague_app/utils/widgets/appbar.dart';
@@ -24,48 +25,54 @@ class _AttractionsPageState extends State<AttractionsPage> {
   String text="Attractions";
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: Column(
-            children: [
+    return Scaffold(
+      drawer: NavigationDrawerWidget(),
+      appBar: header(context,"attractions"),
+      bottomNavigationBar: MyBottomApp(context,"attractions"),
 
-              SizedBox(height: 25,),
-              Container(
-                padding: EdgeInsets.all(4),
-                alignment:Alignment.topLeft,child: Text(
-                "Most Popular",style: GoogleFonts.rubik(fontSize: 25,letterSpacing: 2),
-              ),),
+      body: SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: Column(
+              children: [
 
-              MostPopularWidget(),
-              SizedBox(height: 20,),
-              Container(
-                padding: EdgeInsets.all(4),
-                alignment:Alignment.topLeft,child: Text(
-                "PRAGUE DISTRICTS",style: GoogleFonts.rubik(fontSize: 20,letterSpacing: 2),
-              ),),
-              Prague_Districts(),
-              SizedBox(height: 20,),
-              Container(
-                padding: EdgeInsets.all(4),
-                alignment:Alignment.topLeft,child: Text(
-                "CATEGORIES",style: GoogleFonts.rubik(fontSize: 20,letterSpacing: 2),
-              ),),
-              Categories(),
-              SizedBox(height: 20,),
-              Container(
-                padding: EdgeInsets.all(4),
-                alignment:Alignment.topLeft,child: Text(
-                "TOURS & CRUISES",style: GoogleFonts.rubik(fontSize: 20,letterSpacing: 1),
-              ),),
-              Tours_Cruises(),
-              SizedBox(height: 20,),
+                SizedBox(height: 25,),
+                Container(
+                  padding: EdgeInsets.all(4),
+                  alignment:Alignment.topLeft,child: Text(
+                  "Most Popular",style: GoogleFonts.rubik(fontSize: 25,letterSpacing: 2),
+                ),),
+
+                MostPopularWidget(),
+                SizedBox(height: 20,),
+                Container(
+                  padding: EdgeInsets.all(4),
+                  alignment:Alignment.topLeft,child: Text(
+                  "PRAGUE DISTRICTS",style: GoogleFonts.rubik(fontSize: 20,letterSpacing: 2),
+                ),),
+                Prague_Districts(),
+                SizedBox(height: 20,),
+                Container(
+                  padding: EdgeInsets.all(4),
+                  alignment:Alignment.topLeft,child: Text(
+                  "CATEGORIES",style: GoogleFonts.rubik(fontSize: 20,letterSpacing: 2),
+                ),),
+                Categories(),
+                SizedBox(height: 20,),
+                Container(
+                  padding: EdgeInsets.all(4),
+                  alignment:Alignment.topLeft,child: Text(
+                  "TOURS & CRUISES",style: GoogleFonts.rubik(fontSize: 20,letterSpacing: 1),
+                ),),
+                Tours_Cruises(),
+                SizedBox(height: 20,),
 
 
 
-            ],
+              ],
+            ),
+
+
           ),
-
-
-        );
+    );
   }
 }

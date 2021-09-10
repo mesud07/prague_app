@@ -48,8 +48,8 @@ class NavigationDrawerWidget extends StatelessWidget {
             ],
 
           ),
-          BuildMenuItem(text: "BUY COOLPASS",icon: Icons.credit_card,),
-          BuildMenuItem(text: "MY PASSES",icon: Icons.smartphone),
+          BuildMenuItem(text: "BUY COOLPASS",icon: Icons.credit_card,onClick: ()=>Navigator.pushNamed(context, "/buycp",)),
+          BuildMenuItem(text: "MY PASSES",icon: Icons.smartphone,onClick: ()=>Navigator.pushNamed(context, "/buycp",)),
           BuildMenuItem(text: "ATTRACTIONS",icon: Icons.attractions, onClick: ()=>Navigator.pushNamed(context, "/attractions",)),
           BuildMenuItem(text: "CURRENT NOTICES",icon: Icons.warning_outlined,onClick: ()=>Navigator.pushNamed(context, "/currentNotices",)),
           BuildMenuItem(text: "SALE / COLLECTİON POINTS",icon: Icons.place,onClick: ()=>Navigator.pushNamed(context, "/saleCollection",)),

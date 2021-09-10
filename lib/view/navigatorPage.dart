@@ -106,11 +106,7 @@ class _NavigatorPageState extends State<NavigatorPage> {
         ) : null,
       ),
       drawer: NavigationDrawerWidget(),
-      body: _selectedIndex == 0 ? HomePage() : _selectedIndex == 1
-          ? AttractionsPage()
-          : _selectedIndex == 2 ? BuyCP() : _selectedIndex == 3
-          ? BuyCP()
-          : _selectedIndex == 4 ? FaqMenu() : null,
+
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:prague_app/services/topAttractions_service.dart';
-class MostPopularWidget extends StatefulWidget{
+class
+MostPopularWidget extends StatefulWidget{
   @override
   _MostPopularWidgetState createState() => _MostPopularWidgetState();
 }
@@ -23,12 +24,14 @@ bool _favoriteActivate = false;
                   scrollDirection: Axis.horizontal,
                   itemCount: 6,
                   itemBuilder: (context, index) {
+                    int order=snapshot.data![index]['order'];
+
                     // debugPrint(snapshot.data![index]['content']['en']['title']);
 
                     return InkWell(
                       onTap: (){
-                        Navigator.pushNamed(context, "/detailpage");
-
+                        debugPrint("order "+ order.toString());
+                        Navigator.pushNamed(context, "/detailpage/$order");
                       },
                       child: Container(
 

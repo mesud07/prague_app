@@ -23,17 +23,17 @@ class _Tours_CruisesState extends State<Tours_Cruises> {
           builder:(BuildContext context,AsyncSnapshot<List> snapshot){
 
             if(snapshot.hasData){
-              debugPrint(snapshot.data![0]['categories'][0]);
               return ListView.builder(
                   shrinkWrap: true,
                   scrollDirection: Axis.horizontal,
                   itemCount: 6,
                   itemBuilder: (context, index) {
                     // debugPrint(snapshot.data![index]['content']['en']['title']);
-
+                  int order=snapshot.data![index]['order'];
                     return InkWell(
                       onTap: (){
-
+                        debugPrint("order "+ order.toString());
+                        Navigator.pushNamed(context, "/detailpage/$order");
                       },
                       child: Container(
 

@@ -1,38 +1,38 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:prague_app/helper/datahelper.dart';
 import 'package:prague_app/services/filter_service.dart';
 import 'package:prague_app/services/topAttractions_service.dart';
+import 'package:prague_app/utils/widgets/appbar.dart';
 import 'package:prague_app/widgets/homepage_button.dart';
 import 'package:http/http.dart' as http;
 
 
 
 class FilteredPage extends StatefulWidget {
+  final String filtertype;
   final String filterId;
-  FilteredPage(this.filterId);
+  FilteredPage(this.filtertype,this.filterId);
 
   @override
   _FilteredPageState createState() => _FilteredPageState();
 }
 class _FilteredPageState extends State<FilteredPage> {
-
-
-
 bool _favoriteActivate=false;
-
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: NavigationDrawerWidget(),
+      appBar: header(context,"attractions"),
+      bottomNavigationBar: MyBottomApp(context, "attractions"),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
             child:Column(
               children: [
                 Container(
                   child: FutureBuilder<List>(
-                    future: loadAreaFilterData(widget.filterId),
+                    future: loadAreaFilterData(widget.filtertype,widget.filterId),
                     builder: (BuildContext context,AsyncSnapshot<List> snapshot){
                       if(snapshot.data!=null){
                         //debugPrint(snapshot.data![0]['content']['en']['title']);
@@ -45,11 +45,13 @@ bool _favoriteActivate=false;
                             physics: NeverScrollableScrollPhysics(),
                             itemCount: snapshot.data!.length,
                             itemBuilder: (context, index) {
-                            //  debugPrint(snapshot.data![index]['content']['en']['title']);
+                              int order = snapshot.data![index]['order'];
+
+                              //  debugPrint(snapshot.data![index]['content']['en']['title']);
 
                               return InkWell(
                                 onTap: (){
-                                  Navigator.pushNamed(context, "/detailpage");
+                                  Navigator.pushNamed(context, "/detailpage/$order");
                                 },
                                 child: Container(
                                   height: 200,

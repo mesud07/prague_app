@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:prague_app/mapsample.dart';
 import 'package:prague_app/view/attractions_page.dart';
+import 'package:prague_app/view/buycp.dart';
 import 'package:prague_app/view/detailPage.dart';
 import 'package:prague_app/view/drawermenuitems/coolpass/conditions_of_use.dart';
 import 'package:prague_app/view/drawermenuitems/coolpass/how_it_works.dart';
@@ -25,10 +26,15 @@ import 'package:prague_app/view/drawermenuitems/useful_info/emergency_numbers.da
 import 'package:prague_app/view/drawermenuitems/useful_info/prague_weather.dart';
 import 'package:prague_app/view/drawermenuitems/useful_info/public_holidays.dart';
 import 'package:prague_app/view/drawermenuitems/useful_info/public_transport_map.dart';
+import 'package:prague_app/view/englishwords.dart';
 import 'package:prague_app/view/filteredPage.dart';
 import 'package:prague_app/view/homepage.dart';
 import 'package:prague_app/view/navigatorPage.dart';
 import 'package:prague_app/widgets/widgets.dart';
+import 'package:page_transition/page_transition.dart';
+
+import 'helper/datahelper.dart';
+
 
 
 
@@ -54,10 +60,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes:{
-        "/" :(context)=> NavigatorPage(),
-        "/homePage": (context)=>HomePage(),
-        "/attractions" : (context)=> AttractionsPage(),
-        "/detailpage" : (context)=>DetailPage(),
+        "/": (context)=>HomePage(),
         "/pragueCoolPassCard" : (context)=>PragueCoolPassCard(),
         "/whatIsIncluded" : (context)=>WhatIs_Included(),
         "/howItWorks": (context)=>HowItWorks(),
@@ -65,7 +68,6 @@ class MyApp extends StatelessWidget {
         "/conditionsOfUse": (context)=>ConditionsOfUse(),
         "/currentNotices": (context)=>CurrentNotices(),
         "/saleCollection" : (context)=>SaleCollection(),
-        "/faq" : (context)=> FaqMenu(),
         "/faq/aboutbenefits" : (context)=>AboutBenefits(),
         "/faq/howtouse" : (context)=>HowToUseFaq(),
         "/faq/mobilepass" : (context)=>MobilePassFaq(),
@@ -80,13 +82,58 @@ class MyApp extends StatelessWidget {
         "/publicHoliday" : (context)=> PublicHoliday(),
         "/publicTransportMap" : (context)=>PublicTransportMap(),
         "/languages" : (context)=> Languages(),
+        "/currentNotices":(context)=>CurrentNotices(),
       },
         onGenerateRoute: (settings){
+        //Navigator.pushNamedAndRemoveUntil(context, "/filteredPage/$_id", (route) => false);
+          // Bu şekilde onGenerateRoute kısmına yolluyorum. Ardından split fonksiyonu ile ayırıyorum.
+        //filtered[1] =filteredPAGE filtered[2] = _id değerim oluyor.
           List<String> filtered = settings.name!.split("/");
-          if(filtered[1]=="filteredPage"){
-            print("2. değer : "+filtered[2]);
-            return MaterialPageRoute(builder: (context)=>FilteredPage(filtered[2]));
+          switch(filtered[1]){
+            //switch içinden filtered[1] değrimi eşleştiriyorum.Çünkü aynı sayfayı bir çok farklı data için kullanıyorum.
+
+            case "filteredPage":
+              return PageTransition(
+                //ben filteredPage içinde bir fonksiyona eleman taşıyorum Sen sadece filtered[2] kullanarak yapabilirsin.
+                child: FilteredPage("area",filtered[2]),
+                type: PageTransitionType.fade,
+                settings: settings,
+                reverseDuration: Duration(seconds: 0),
+              );
+            case "categoryFilteredPage":
+              return PageTransition(
+                child: FilteredPage("category",filtered[2]),
+                type: PageTransitionType.fade,
+                settings: settings,
+                reverseDuration: Duration(seconds: 0),
+              );
+
+            case "detailpage":
+              return MaterialPageRoute(builder: (context)=>DetailPage(int.parse(filtered[2])));
+
+            case "attractions":
+              return PageTransition(
+                child: AttractionsPage(),
+                type: PageTransitionType.fade,
+                settings: settings,
+                reverseDuration: Duration(seconds: 0),
+              );
+            case "buycp":
+              return PageTransition(
+                child: BuyCP(),
+                type: PageTransitionType.fade,
+                settings: settings,
+                reverseDuration: Duration(seconds: 0),
+              );
+            case "faq":
+              return PageTransition(
+                child: FaqMenu(),
+                type: PageTransitionType.fade,
+                settings: settings,
+                reverseDuration: Duration(seconds: 0),
+              );
           }
+
         }
     );
   }

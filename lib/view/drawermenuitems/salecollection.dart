@@ -1,72 +1,138 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:prague_app/helper/sizes_helper.dart';
-import 'package:prague_app/model/slidermodel.dart';
+import 'package:prague_app/helper/datahelper.dart';
+import 'package:prague_app/services/filter_service.dart';
+import 'package:prague_app/services/pointsService.dart';
 
-class SaleCollection extends StatelessWidget {
 
+
+
+class SaleCollection extends StatefulWidget {
+
+
+
+  @override
+  _SaleCollectionState createState() => _SaleCollectionState();
+}
+class _SaleCollectionState extends State<SaleCollection> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-
-        backgroundColor: Colors.white,
-        toolbarHeight: 40,
-        elevation: 30,
-        title: Container(
-          alignment: Alignment.center,
-          color: Colors.white,
-          width: displayWidth(context)*0.65,
-          child: Text(
-            "Prague CoolPass",
-            style: GoogleFonts.ubuntu(
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-                letterSpacing: 1),
-          ),
-        ),
-      ),
-      body: Container(
-        color: Colors.white,
-        padding: EdgeInsets.all(20),
-
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+      bottomNavigationBar: MyBottomApp(context, "attractions"),
+      appBar: header(context,"POINT"),
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child:Column(
           children: [
             Container(
+              child: FutureBuilder<List>(
+                future: loadPointsData(),
+                builder: (BuildContext context,AsyncSnapshot<List> snapshot){
+                  if(snapshot.data!=null){
+                    //debugPrint(snapshot.data![0]['content']['en']['title']);
+                  }else{
+                    debugPrint("boş");
+                  }
+                  if(snapshot.hasData){
+                    return ListView.builder(
+                        shrinkWrap: true,
+                        physics: NeverScrollableScrollPhysics(),
+                        itemCount: 5,
+                        itemBuilder: (context, index) {
+                          //  debugPrint(snapshot.data![index]['content']['en']['title']);
 
-              child: Text(''' PRAGUE COOLPASS & CARD
-        You have two options how to get and use your Prague
-        CoolPass. You can either download it in digital form to
-        your mobile or collect the physical card upon arrival.
-        PRAGUE COOLPASS - sent straight to your smartphone
-        Prague CoolPass is the latest convenient tool for
-        discovering Prague attractions on your own. It comes in
-        the shape of a QR-code that can be purchased online or
-        directly in this App. Download in seconds - and you're
-        ready to go!''',style: GoogleFonts.ubuntu(fontSize: 12,color: Colors.black),),),
-            SizedBox(height: 50,),
-            Container(
-              height: 200,
-              decoration: BoxDecoration(
-                image:  DecorationImage(
-                    fit: BoxFit.cover,
-                    image: AssetImage(pageItemList[0].urlname)
-                ),
+                          return InkWell(
+                            onTap: (){
+                              Navigator.pushNamed(context, "/detailpage");
+                            },
+                            child: Container(
+                              height: 200,
+
+                              margin: EdgeInsets.all(5),
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    fit: BoxFit.cover,
+                                    image: NetworkImage("https://static2.praguecoolpass.com/"+snapshot.data![index]['webimages'][0])),
+                              ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+
+
+                                      Container(
+                                        padding: EdgeInsets.all(2),
+
+                                        color: Colors.orangeAccent,
+                                        child: Text("INCLUDED"),
+                                      ),
+                                      Container(
+                                        padding: EdgeInsets.only(top: 5),
+                                        child: Row(
+                                          children: [
+                                            Icon(
+                                              Icons.attractions,
+                                              color: Colors.white,
+                                              size: 30.0,
+                                              semanticLabel:
+                                              'Text to announce in accessibility modes',
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Stack(
+                                    children: [
+                                      Opacity(
+                                        opacity:0.5,
+                                        child: Container(
+                                          height: 25,
+                                          color: Colors.black,
+                                          padding: EdgeInsets.all(4),
+                                          alignment: Alignment.bottomLeft,
+                                        ),
+                                      ),
+
+
+                                      //****************
+                                      //ÇEKTİĞİM  VERİ
+
+                                      Container(
+                                        margin: EdgeInsets.all(4),
+                                        child: Text(snapshot.data![index]['content']['en']['title'],
+                                          style: GoogleFonts.ubuntu(
+                                              fontSize: 16, color: Colors.white),
+                                        ),
+                                      ),
+                                      //ÇEKEMEDİĞİM VERİ
+                                      // Text(snapshot.data![index].content.en.title),
+
+                                    ],
+                                  ),
+
+                                ],
+                              ),
+                            ),
+                          );
+                        });
+
+                  }else if(snapshot.hasError){
+                    return Text(snapshot.hasError.toString());
+                  }else{
+                    return Center(child: CircularProgressIndicator(),);
+                  }
+
+                },
               ),
             ),
-            SizedBox(height: 50,),
-
-            Text('''
-          PRAGUE CARD - order online and collect upon arrival
-        Prague Card is a classic sightseeing card, enjoyed by more
-        than one million visitors since 1992. It is a smart card
-        available for purchase online and further pickup at our
-        collection points in Prague.''',style: GoogleFonts.ubuntu(fontSize: 14,color: Colors.black,),),
-
           ],
         ),
       ),
     );
   }
 }
+

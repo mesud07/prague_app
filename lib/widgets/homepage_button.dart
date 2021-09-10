@@ -15,7 +15,13 @@ Homepage_Button(this.butontext,this.icon,);
       child: InkWell(
         splashColor: Colors.yellowAccent,
         highlightColor: Colors.black,
-        onTap: (){},//=>onClick,
+        onTap: (){
+          butontext=="ATTRACTIONS"? Navigator.pushNamedAndRemoveUntil(context, "/attractions", (route) => false):
+              butontext=="MY COOLPASS"? Navigator.pushNamedAndRemoveUntil(context, "/buycp", (route) => false):
+                  butontext=="TIPS & ALERRTS"? Navigator.pushNamed(context, "/currentNotices"):
+                      butontext=="BUY COOLPASS"? Navigator.pushNamedAndRemoveUntil(context, "/buycp", (route) => false):
+                          null;
+        },//=>onClick,
         child: Material(
           elevation: 4,
           shadowColor: Colors.grey,

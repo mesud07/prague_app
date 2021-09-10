@@ -30,7 +30,7 @@ class _Prague_DistrictsState extends State<Prague_Districts> {
 
                     return InkWell(
                       onTap: (){
-                        Navigator.pushNamed(context,"/filteredPage/$_id");
+                        Navigator.pushNamedAndRemoveUntil(context, "/filteredPage/$_id", (route) => false);
                       },
                       child: Container(
 
