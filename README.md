@@ -25,9 +25,11 @@ Projeye devam etmekteyim.
 
 ![screenshot](https://user-images.githubusercontent.com/56825677/132835553-95349b61-2700-4880-9a2f-30d43381b3d2.png)
 <h1>Attractions Page</h1>
-![screenshot](https://user-images.githubusercontent.com/56825677/132835772-5b3bcb84-97a3-49f9-8071-6bc05924face.png)
-<h1>Buy Pass</h1>
 ![screenshot](https://user-images.githubusercontent.com/56825677/132835837-15b35eaf-9b9b-422b-bb23-fa3961931076.png)
+
+<h1>Buy Pass</h1>
+![screenshot](https://user-images.githubusercontent.com/56825677/132835772-5b3bcb84-97a3-49f9-8071-6bc05924face.png)
+
 
 <h1>Attractions sayfasından herhangi bir kategori'ye veya area'lardan birine tıklandığında açılan filtrelenmiş sayfa</h1>
 ![screenshot](https://user-images.githubusercontent.com/56825677/132836013-3ab1086c-0a36-4c97-b8be-3a6905ad84ed.png)
