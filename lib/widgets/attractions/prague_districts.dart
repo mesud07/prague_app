@@ -3,15 +3,19 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:prague_app/services/all_Attractions.dart';
 import 'package:prague_app/services/attractions_page/prague_areas.dart';
 import 'package:prague_app/services/topAttractions_service.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 class Prague_Districts extends StatefulWidget{
   @override
   _Prague_DistrictsState createState() => _Prague_DistrictsState();
 }
+
 class _Prague_DistrictsState extends State<Prague_Districts> {
+
+
   bool _favoriteActivate = false;
+
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Container(
       height: 150,
       child: FutureBuilder(

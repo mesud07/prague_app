@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:prague_app/view/favoriler.dart';
+import 'package:prague_app/view/favorites.dart';
 class FadeRoute extends PageRouteBuilder {
   final Widget page;
   FadeRoute({required this.page})
@@ -140,8 +140,7 @@ PreferredSizeWidget header(BuildContext context,String name) {
             children: [
               IconButton(
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (_)=>Favoriler())).then((value) => print(a.toString()));
-
+                      Navigator.push(context, MaterialPageRoute(builder: (_)=>Favorites()));
                 }, icon: Icon(Icons.favorite_outlined,),),
               Container(
                 margin: EdgeInsets.only(top: 6, bottom: 6),

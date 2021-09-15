@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:prague_app/dbhelper/databaseHelper.dart';
 import 'package:prague_app/mapsample.dart';
+import 'package:prague_app/utils/box_manager.dart';
 import 'package:prague_app/view/attractions_page.dart';
 import 'package:prague_app/view/buycp.dart';
 import 'package:prague_app/view/detailPage.dart';
@@ -26,26 +28,31 @@ import 'package:prague_app/view/drawermenuitems/useful_info/emergency_numbers.da
 import 'package:prague_app/view/drawermenuitems/useful_info/prague_weather.dart';
 import 'package:prague_app/view/drawermenuitems/useful_info/public_holidays.dart';
 import 'package:prague_app/view/drawermenuitems/useful_info/public_transport_map.dart';
-import 'package:prague_app/view/englishwords.dart';
 import 'package:prague_app/view/filteredPage.dart';
 import 'package:prague_app/view/homepage.dart';
 import 'package:prague_app/view/navigatorPage.dart';
 import 'package:prague_app/widgets/widgets.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
+import 'package:hive/hive.dart';
 import 'helper/datahelper.dart';
 
 
+void main() async{
+  await Hive.initFlutter();
+  //await Hive.openBox<String>(BoxManager.instance.favoritesbox);
+  await Hive.openBox("favoriListesi");
 
-
-void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+
     return MaterialApp(
 
       debugShowCheckedModeBanner: false,
