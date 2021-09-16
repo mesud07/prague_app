@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:prague_app/dbhelper/databaseHelper.dart';
 import 'package:prague_app/mapsample.dart';
 import 'package:prague_app/utils/box_manager.dart';
+import 'package:prague_app/view/allmap.dart';
 import 'package:prague_app/view/attractions_page.dart';
 import 'package:prague_app/view/buycp.dart';
 import 'package:prague_app/view/detailPage.dart';
@@ -28,9 +29,11 @@ import 'package:prague_app/view/drawermenuitems/useful_info/emergency_numbers.da
 import 'package:prague_app/view/drawermenuitems/useful_info/prague_weather.dart';
 import 'package:prague_app/view/drawermenuitems/useful_info/public_holidays.dart';
 import 'package:prague_app/view/drawermenuitems/useful_info/public_transport_map.dart';
+import 'package:prague_app/view/favorites.dart';
 import 'package:prague_app/view/filteredPage.dart';
 import 'package:prague_app/view/homepage.dart';
 import 'package:prague_app/view/navigatorPage.dart';
+import 'package:prague_app/view/search_page.dart';
 import 'package:prague_app/widgets/widgets.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -67,7 +70,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes:{
-        "/": (context)=>HomePage(),
+        "/": (context)=>SearchPage(),
         "/pragueCoolPassCard" : (context)=>PragueCoolPassCard(),
         "/whatIsIncluded" : (context)=>WhatIs_Included(),
         "/howItWorks": (context)=>HowItWorks(),
@@ -135,6 +138,27 @@ class MyApp extends StatelessWidget {
             case "faq":
               return PageTransition(
                 child: FaqMenu(),
+                type: PageTransitionType.fade,
+                settings: settings,
+                reverseDuration: Duration(seconds: 0),
+              );
+            case "favorites":
+              return PageTransition(
+                child: Favorites(),
+                type: PageTransitionType.fade,
+                settings: settings,
+                reverseDuration: Duration(seconds: 0),
+              );
+            case "allmap":
+              return PageTransition(
+                child: AllMap(),
+                type: PageTransitionType.fade,
+                settings: settings,
+                reverseDuration: Duration(seconds: 0),
+              );
+            case "searchPage":
+              return PageTransition(
+                child: SearchPage(),
                 type: PageTransitionType.fade,
                 settings: settings,
                 reverseDuration: Duration(seconds: 0),

@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:prague_app/model/top_attractions.dart';
 
@@ -52,4 +53,60 @@ Future<List<dynamic>> pragueCastleloadData() async {
   }
 
   return allAttractions;
+}
+
+
+
+Future<List<dynamic>> favoritesData(List list) async {
+  List allAttractions = [];
+  List favorites = [];
+
+  try {
+    // This is an open REST API endpoint for testing purposes
+    const API =
+        'https://api2.praguecoolpass.com/object/attraction/';
+    final http.Response response = await http.get(Uri.parse(API));
+    allAttractions = json.decode(response.body);
+    for(var i=0;i<list.length;i++){
+      for(var j in allAttractions){
+        if (j['order']==list[i]){
+          favorites.add(j);
+        }
+
+      }
+
+    }
+    print(favorites[1]['content']['en']['title']);
+    return favorites;
+
+  } catch (err) {
+    print(err);
+  }
+
+  return favorites;
+}
+
+Future<List<Marker>> markersData() async {
+  List allAttractions = [];
+  List<Marker> markers = [];
+
+  try {
+    // This is an open REST API endpoint for testing purposes
+    const API =
+        'https://api2.praguecoolpass.com/object/attraction/';
+    final http.Response response = await http.get(Uri.parse(API));
+    allAttractions = json.decode(response.body);
+    for(var i=0;i<allAttractions.length;i++){
+      markers.add(Marker(
+        markerId: MarkerId("marker-"+i.toString()),
+        position: LatLng(allAttractions[i]['lat'],allAttractions[i]['lon']),
+      ));
+    }
+    return markers;
+
+  } catch (err) {
+    print(err);
+  }
+
+  return markers;
 }

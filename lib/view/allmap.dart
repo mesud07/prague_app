@@ -2,18 +2,20 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 
-class MapSample extends StatefulWidget {
+import 'package:prague_app/helper/datahelper.dart';
+import 'package:prague_app/services/all_Attractions.dart';
+import 'package:prague_app/utils/widgets/appbar.dart';
+
+class AllMap extends StatefulWidget {
   @override
-  State<MapSample> createState() => MapSampleState();
-  final double lat,len;
-  MapSample(this.lat,this.len);
+  State<AllMap> createState() => _AllMapState();
+
 
 }
 
-class MapSampleState extends State<MapSample> {
-late LatLng konum;
+class _AllMapState extends State<AllMap> {
 
-
+  late Future<List<Marker>> markered;
 
   final Set<Marker> _markers = {};
   MapType currentType=MapType.normal;
@@ -29,20 +31,26 @@ late LatLng konum;
 
   LatLng _lastMapPosition = _center;
 
-@override
+
+  @override
   void initState() {
     // TODO: implement initState
-    konum=LatLng(widget.lat, widget.len);
+    markered=markersData();
+    debugPrint("listenin markerları"+markered.toString());
+
     super.initState();
 
-        _kLake = CameraPosition(
+    _kLake = CameraPosition(
         bearing: 192.8334901395799,
-        target: LatLng(widget.lat, widget.len),
+        target: LatLng(22.22222, 50.232323),
         tilt: 59.440717697143555,
         zoom: 14.151926040649414);  }
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
+      appBar: header(context,"attractions"),
+      bottomNavigationBar: MyBottomApp(context, "attractions"),
+      drawer: NavigationDrawerWidget(),
       body: GoogleMap(
         onCameraMove: _onCameraMove,
 
@@ -53,32 +61,32 @@ late LatLng konum;
 
       ),
       floatingActionButton: Container(
-        
+
         margin: EdgeInsets.only(right: 60,bottom: 10),
 
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
 
-            children: [
-              Container(
-                margin: EdgeInsets.all(5),
+          children: [
+            Container(
+              margin: EdgeInsets.all(5),
 
-                child: FloatingActionButton(
-                  heroTag: "bir",
-                  onPressed: _changeMap,
-                  child: Icon(Icons.directions_boat),
-                ),
+              child: FloatingActionButton(
+                heroTag: "bir",
+                onPressed: _changeMap,
+                child: Icon(Icons.directions_boat),
               ),
-              Container(
-                margin: EdgeInsets.all(5),
-                child: FloatingActionButton(
-                  heroTag: "iki",
-                  onPressed: _onAddMarkerButtonPressed,
-                  child: Icon(Icons.add),
-                ),
-              )
-            ],
-          ),
+            ),
+            Container(
+              margin: EdgeInsets.all(5),
+              child: FloatingActionButton(
+                heroTag: "iki",
+                onPressed: _onAddMarkerButtonPressed,
+                child: Icon(Icons.add),
+              ),
+            )
+          ],
+        ),
       ),
 
     );
@@ -99,12 +107,14 @@ late LatLng konum;
     _lastMapPosition = position.target;
   }
   void _onMapCreated(GoogleMapController controller){
-  setState(() {
-    _markers.add(Marker(
-      markerId: MarkerId('id-1'),
-        position: konum,
-    ));
-  });
+    setState(() {
+      _markers.add(Marker(
+        markerId: MarkerId("id-1"),
+        position: LatLng(22.2222,52.2222222),
+      ));
+    });
+
+
   }
   void _onAddMarkerButtonPressed() {
     setState(() {

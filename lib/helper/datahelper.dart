@@ -2,6 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:prague_app/view/allmap.dart';
+import 'package:prague_app/view/attractions_page.dart';
 import 'package:prague_app/view/favorites.dart';
 class FadeRoute extends PageRouteBuilder {
   final Widget page;
@@ -26,7 +28,7 @@ class FadeRoute extends PageRouteBuilder {
   );
 }
 
-Widget MyBottomApp(BuildContext context,String name,) {
+Widget  MyBottomApp(BuildContext context,String name,) {
   return BottomAppBar(
       color: Colors.white,
       elevation: 9.0,
@@ -114,8 +116,12 @@ TextStyle titlestyle = GoogleFonts.ubuntu(
     fontSize: 14, color: Colors.black);
 TextStyle style2 = GoogleFonts.ubuntu(
     fontSize: 14, color: Colors.orangeAccent);
+bool isMap=false;
+bool isFavoritePage = false;
+
 
 PreferredSizeWidget header(BuildContext context,String name) {
+
   return PreferredSize(
     preferredSize: name=="attractions" || name=="POINT" ? Size.fromHeight(100): Size.fromHeight(50),
     child: AppBar(
@@ -140,7 +146,20 @@ PreferredSizeWidget header(BuildContext context,String name) {
             children: [
               IconButton(
                 onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (_)=>Favorites()));
+
+                  if(isFavoritePage==false){
+                    isFavoritePage=true;
+                    debugPrint(isFavoritePage.toString());
+                    Navigator.pushNamed(context, "/favorites");
+                  }else{
+
+                    isFavoritePage=false;
+                    debugPrint(isFavoritePage.toString());
+
+                    Navigator.pushNamed(context, "/attractions");
+
+                  }
+                      
                 }, icon: Icon(Icons.favorite_outlined,),),
               Container(
                 margin: EdgeInsets.only(top: 6, bottom: 6),
@@ -169,7 +188,17 @@ PreferredSizeWidget header(BuildContext context,String name) {
                       icon: Icon(Icons.location_on, color: Colors.black,),
                       label: Text("Map", style: TextStyle(
                           color: Colors.black),),
-                      onPressed: () {},
+                      onPressed: () {
+                        if(isMap==false){
+                          isMap=true;
+                          debugPrint(isMap.toString());
+                          Navigator.pushNamed(context, "/allmap");
+                        }else{
+                          isMap=false;
+                          debugPrint(isMap.toString());
+                          Navigator.pushNamed(context, "/attractions");
+                        }
+                      },
                       style: ElevatedButton.styleFrom(
                         primary: Colors.white,
                         elevation: 0.0,
@@ -192,7 +221,9 @@ PreferredSizeWidget header(BuildContext context,String name) {
 
                   ],
                 ),),
-              IconButton(onPressed: () {}, icon: Icon(Icons.search)),
+              IconButton(onPressed: () {
+                Navigator.pushNamed(context, "/searchPage");
+              }, icon: Icon(Icons.search)),
 
             ],
           ),
