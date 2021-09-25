@@ -1,6 +1,12 @@
 # prague_app
 
-Prag şehrini tanıtan bir uygulama yapmaktayım. Uygulamayı staj yaptığım firmanın API'lerini kullanarak yapıyorum. Şuanda Online olarak çalışan uygulamayı offline modda da çalışacak şekilde düzeneleyeceğim.
+İndirme Linki aşağıdadır.
+
+https://dosya.co/k8mierpmtkfa/prague-cool-pass.apk.html
+
+
+
+Prag şehrini tanıtan bir uygulama yapmaktayım. Uygulamayı staj yaptığım firmanın API'lerini kullanarak yaptım. Şuanda Online olarak çalışıyor.
 
 Uygulamanın özellikleri:
 
@@ -8,7 +14,7 @@ Uygulamanın özellikleri:
 
 İster filtreleyerek sadece hedeflediği mekanları getirebilir ister favorisine ekleyip gitmek istediği  yerleri farklı bir sayfada inceleyebilir.
 
-Map üzerinden kolayca kendine olan uzaklığı, yol haritasını bulabilir.İlgili yerin telefon ve diğer bilgilerine ulaşabilir.
+Map üzerinde tüm mekanlara erişilebiliyor.İlgili yerin telefon ve diğer bilgilerine ulaşabilir.
 
 Prag ile alakalı acil numaraları içinde barındırıyor.
 
