@@ -13,7 +13,7 @@ Uygulamanın özellikleri:
 
 Çeşitli tur ve etkinlikler 120 tane farklı türde gezilecek yerleri barındırıyor.
 
-İster filtreleyerek sadece hedeflediği mekanları getirebilir ister favorisine ekleyip gitmek istediği  yerleri farklı bir sayfada inceleyebilir.
+İster filtreleyerek sadece hedeflediğiniz mekanları getirebilir ister favoriye ekleyip   farklı bir sayfada inceleyebilirsiniz.
 
 Map üzerinde tüm mekanlara erişilebiliyor.İlgili yerin telefon ve diğer bilgilerine ulaşabilir.
 
