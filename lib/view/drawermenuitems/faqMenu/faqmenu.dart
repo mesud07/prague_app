@@ -61,7 +61,8 @@ class _FaqMenuState extends State<FaqMenu> {
                       margin: EdgeInsets.only(top: 3),
                       alignment: Alignment.topLeft,
                       child: Material(
-                        child: Text(titles[index],style: GoogleFonts.rubik(fontSize: 14,fontWeight: FontWeight.bold,color: Colors.black),),
+                        color: Colors.grey.shade200,
+                        child: Text(titles[index],style: TextStyle(fontSize: 14,fontWeight: FontWeight.bold,color: Colors.black),),
                       ),
                     ),
                     Icon(Icons.arrow_right)

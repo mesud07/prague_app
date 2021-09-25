@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart' as http;
+import 'package:prague_app/model/mapmodel.dart';
 import 'package:prague_app/model/top_attractions.dart';
 
 class ListTopService {
@@ -76,7 +77,7 @@ Future<List<dynamic>> favoritesData(List list) async {
       }
 
     }
-    print(favorites[1]['content']['en']['title']);
+   // print(favorites[1]['content']['en']['title']);
     return favorites;
 
   } catch (err) {
@@ -86,9 +87,9 @@ Future<List<dynamic>> favoritesData(List list) async {
   return favorites;
 }
 
-Future<List<Marker>> markersData() async {
+Future<Set<Marker>> markersData() async {
   List allAttractions = [];
-  List<Marker> markers = [];
+  Set<Marker> markers = {};
 
   try {
     // This is an open REST API endpoint for testing purposes
@@ -97,11 +98,18 @@ Future<List<Marker>> markersData() async {
     final http.Response response = await http.get(Uri.parse(API));
     allAttractions = json.decode(response.body);
     for(var i=0;i<allAttractions.length;i++){
+     // var c=MapModel.fromJson(allAttractions[i]);
+      final _listmarker = List<MapModel>.from(allAttractions.map((x) => MapModel.fromJson(x)));
+      print("listenin uzunluğu "+_listmarker.length.toString());
+     // print(i.toString()+".'nin lat değeri : "+_listmarker[i].lat.toString());
       markers.add(Marker(
         markerId: MarkerId("marker-"+i.toString()),
-        position: LatLng(allAttractions[i]['lat'],allAttractions[i]['lon']),
+        position: LatLng(_listmarker[i].lat,_listmarker[i].lon),
+
       ));
+     // print(markers);
     }
+   print("set listenin uzunluğu "+markers.length.toString());
     return markers;
 
   } catch (err) {

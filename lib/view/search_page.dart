@@ -21,6 +21,10 @@ class _SearchPageState extends State<SearchPage> {
     //listeye dönüştürdük
     allattractions= await pragueCastleloadData().then((value)=>allattractions=value);
     debugPrint(allattractions[1].toString());
+    _foundPlaces = allattractions;
+    setState(() {
+
+    });
   }
 
 
@@ -31,7 +35,7 @@ class _SearchPageState extends State<SearchPage> {
   initState() {
     // at the beginning, all users are shown
       getir();
-    _foundPlaces = allattractions;
+
     super.initState();
   }
 
@@ -61,7 +65,7 @@ class _SearchPageState extends State<SearchPage> {
     debugPrint("bulunanların uzunluğu"+_foundPlaces.length.toString());
 
     return Scaffold(
-      appBar: header(context, "attractions"),
+      appBar: header(context, "attractions1"),
       bottomNavigationBar: MyBottomApp(context, "attractions"),
       drawer: NavigationDrawerWidget(),
       body: Padding(
@@ -87,11 +91,15 @@ class _SearchPageState extends State<SearchPage> {
                 return Expanded(
                     child: _foundPlaces.length > 0
                   ? ListView.builder(
+                      shrinkWrap: true,
                     itemCount: _foundPlaces.length,
                     itemBuilder: (context, index) {
+                      //int order = 1;
                       int order = _foundPlaces[index]['order'];
-                      var isim = _cagirmakicin.getAt(index).toString();
-
+                      debugPrint(_foundPlaces[index]['content']['en']['title']+ " order : "+ _foundPlaces[index]['order'].toString());
+                     var isim = _foundPlaces[index]['content']['en']['title'];
+                      // var isim = _cagirmakicin.getAt(index).toString();
+                      //var isim = "PRAGUE CASTLE CIRCUIT";
                       return InkWell(
                         onTap: (){
                           Navigator.pushNamed(context, "/detailpage/$order");
@@ -170,7 +178,7 @@ class _SearchPageState extends State<SearchPage> {
                         ),
                       );
                     },
-                  ): Text("selam"));
+                  ): Center(child:CircularProgressIndicator()));
                     },
                   )
           ],

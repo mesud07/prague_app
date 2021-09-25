@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:prague_app/dbhelper/databaseHelper.dart';
 import 'package:prague_app/mapsample.dart';
-import 'package:prague_app/utils/box_manager.dart';
 import 'package:prague_app/view/allmap.dart';
 import 'package:prague_app/view/attractions_page.dart';
+import 'package:prague_app/view/buycoolpass.dart';
 import 'package:prague_app/view/buycp.dart';
 import 'package:prague_app/view/detailPage.dart';
+import 'package:prague_app/view/detailfilter.dart';
 import 'package:prague_app/view/drawermenuitems/coolpass/conditions_of_use.dart';
 import 'package:prague_app/view/drawermenuitems/coolpass/how_it_works.dart';
 import 'package:prague_app/view/drawermenuitems/coolpass/how_you_save.dart';
@@ -46,6 +47,7 @@ void main() async{
   await Hive.initFlutter();
   //await Hive.openBox<String>(BoxManager.instance.favoritesbox);
   await Hive.openBox("favoriListesi");
+  await Hive.openBox("filteredDeger");
 
   runApp(MyApp());
 }
@@ -70,7 +72,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes:{
-        "/": (context)=>SearchPage(),
+        "/": (context)=>HomePage(),
         "/pragueCoolPassCard" : (context)=>PragueCoolPassCard(),
         "/whatIsIncluded" : (context)=>WhatIs_Included(),
         "/howItWorks": (context)=>HowItWorks(),
@@ -135,6 +137,13 @@ class MyApp extends StatelessWidget {
                 settings: settings,
                 reverseDuration: Duration(seconds: 0),
               );
+            case "buycoolpass":
+              return PageTransition(
+                child: BuyCoolPass(),
+                type: PageTransitionType.fade,
+                settings: settings,
+                reverseDuration: Duration(seconds: 0),
+              );
             case "faq":
               return PageTransition(
                 child: FaqMenu(),
@@ -159,6 +168,13 @@ class MyApp extends StatelessWidget {
             case "searchPage":
               return PageTransition(
                 child: SearchPage(),
+                type: PageTransitionType.fade,
+                settings: settings,
+                reverseDuration: Duration(seconds: 0),
+              );
+            case "detailfilter":
+              return PageTransition(
+                child: DetailFilter(),
                 type: PageTransitionType.fade,
                 settings: settings,
                 reverseDuration: Duration(seconds: 0),

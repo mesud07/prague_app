@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:prague_app/services/faqService.dart';
 import 'package:prague_app/view/drawermenuitems/faqMenu/faqmenu.dart';
@@ -40,9 +41,14 @@ class _HowToUseFaqState extends State<HowToUseFaq> {
                       ),
                         children: [
                           ListTile(
-                            title: Text(
-                              snapshot.data![index]['content']['en']['text'],
-                              style: TextStyle(fontWeight: FontWeight.w700),
+                            title: Html(
+                              data: snapshot.data![index]['content']['en']['text'],
+                              style: {
+                                "body": Style(
+                                  fontSize: FontSize(16.0),
+
+                                ),
+                              },
                             ),
                           )
                         ],);

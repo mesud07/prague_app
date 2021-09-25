@@ -14,18 +14,39 @@ class AllMap extends StatefulWidget {
 }
 
 class _AllMapState extends State<AllMap> {
+  Set<Marker> markered = {};
 
-  late Future<List<Marker>> markered;
-
-  final Set<Marker> _markers = {};
-  MapType currentType=MapType.normal;
+  Set<Marker> _markers = {};
 
 
-  static final CameraPosition _kGooglePlex = CameraPosition(
-    target: LatLng(45.521563, -122.677433),
-    zoom: 14.4746,
-  );
+ // var markerr;
+
+  Future<void> getir() async {
+;
+;
+
+    //SET DÖNDÜREN markersData() fonksiyonundan markered'a aktarıyorum.
+
+    markered=await markersData();
+
+    _markers=markered;
+    setState(() {
+
+    });
+
+    print("markered listesinin uzunluğı " + markered.length.toString());
+    print("first object of markered : " + markered.first.toString());
+
+
+  }
+
+  //haritanın görünümü'nü değiştiren değişken
+  MapType currentType = MapType.normal;
+
+
   static const LatLng _center = const LatLng(46.521563, -122.677433);
+
+  //başlangıç camera pozisyonu
   late CameraPosition _kLake;
 
 
@@ -35,20 +56,24 @@ class _AllMapState extends State<AllMap> {
   @override
   void initState() {
     // TODO: implement initState
-    markered=markersData();
-    debugPrint("listenin markerları"+markered.toString());
+    //markered'a verilerin aktarılmasını sağlıyorum.
+
 
     super.initState();
+    getir();
 
     _kLake = CameraPosition(
         bearing: 192.8334901395799,
-        target: LatLng(22.22222, 50.232323),
+        target: LatLng(50.087875102788665, 14.420316950418055),
         tilt: 59.440717697143555,
-        zoom: 14.151926040649414);  }
+        zoom: 14.151926040649414);
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      appBar: header(context,"attractions"),
+      appBar: header(context, "attractions"),
       bottomNavigationBar: MyBottomApp(context, "attractions"),
       drawer: NavigationDrawerWidget(),
       body: GoogleMap(
@@ -56,13 +81,13 @@ class _AllMapState extends State<AllMap> {
 
         markers: _markers,
         mapType: currentType,
+        //ilk kamera konumu
         initialCameraPosition: _kLake,
-        onMapCreated:_onMapCreated,
 
       ),
       floatingActionButton: Container(
 
-        margin: EdgeInsets.only(right: 60,bottom: 10),
+        margin: EdgeInsets.only(right: 60, bottom: 10),
 
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
@@ -94,28 +119,24 @@ class _AllMapState extends State<AllMap> {
 
   Future<void> _changeMap() async {
     setState(() {
-      if(currentType==MapType.normal){
+      if (currentType == MapType.normal) {
         currentType = MapType.hybrid;
-
-      }else{
-        currentType=MapType.normal;
+      } else {
+        currentType = MapType.normal;
       }
-
     });
   }
+
   void _onCameraMove(CameraPosition position) {
     _lastMapPosition = position.target;
   }
-  void _onMapCreated(GoogleMapController controller){
-    setState(() {
-      _markers.add(Marker(
-        markerId: MarkerId("id-1"),
-        position: LatLng(22.2222,52.2222222),
-      ));
-    });
 
+  //Bu fonksiyon içinde konum atamalarını yapıyorum.
+  //_markers'ın uzunluğunu istediğimde 0 dönüyor.Çünkü sayfa oluşturulurken bu fonksiyonu kullanılıyor.
+  void _onMapCreated(GoogleMapController controller) {
 
   }
+
   void _onAddMarkerButtonPressed() {
     setState(() {
       _markers.add(Marker(

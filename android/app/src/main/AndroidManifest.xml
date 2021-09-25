@@ -2,7 +2,7 @@
     package="com.example.prague_app">
    <application
 
-        android:label="prague_app"
+        android:label="Prague CoolPass"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

@@ -27,37 +27,9 @@ class _DetailPageState extends State<DetailPage> {
   var mySharedPrefences;
   late Future loaded_Data;
 
+  List tableListtitle = ["ADULT","CHILD","STUDENT"];
 
-  String data = """<table>
-  <caption>a test table with merged cells</caption>
-  <thead>
-    <tr>
-      <th rowspan="2"></th>
-      <th colspan="2">NORMAL PRICE</th>
-      <th rowspan="2">price with CoolPass</th>
-    </tr>
-    <tr>
-      <th>Adult</th>
-      <th>Child</th>
-      <th>Student</th>
 
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>males</td>
-      <td>1.9</td>
-      <td>0.003</td>
-      <td>40%</td>
-    </tr>
-    <tr>
-      <td>females</td>
-      <td>1.7</td>
-      <td>0.002</td>
-      <td>43%</td>
-    </tr>
-  </tbody>
-</table>""";
 
 
 @override
@@ -97,7 +69,7 @@ class _DetailPageState extends State<DetailPage> {
                             child: Center(child: CircularProgressIndicator(),));
 
                       }else if(snapshot.hasData){
-
+                          List prices = [snapshot.data!["priceAdult"],snapshot.data!["priceChild"],snapshot.data!["priceStudent"]];
 
                         //Yıldızlar
 
@@ -253,11 +225,43 @@ class _DetailPageState extends State<DetailPage> {
                                       ),
                                       child: Center(child: Text("INCLUDED in Prague Card",style: GoogleFonts.ubuntu(color: Colors.black,fontWeight: FontWeight.bold),)),
                                     ),
-                                    Container(
-                                        margin:EdgeInsets.all(10),
-                                        padding:EdgeInsets.all(10),
+                                  Table(
+                                    border: TableBorder.all(width: 1),
+                                    textDirection: TextDirection.ltr,
+                                    defaultVerticalAlignment: TableCellVerticalAlignment.bottom,
+                                    children: [
+                                      TableRow(
+                                          children:[
+                                            Container(
+                                              padding:EdgeInsets.all(5)),
+                                            Container(
+                                              padding:EdgeInsets.all(5),
+                                              child: Text("Normal Price"),),                                              Container(
+                                              padding:EdgeInsets.all(5),
+                                              child: Text("price with CoolPass"),)
 
-                                        child: Html(data: data))
+
+                                          ] ),
+
+
+                                      for(var i=0;i<3;i++)
+                                        TableRow(
+                                            children:[
+                                          Container(
+                                            padding:EdgeInsets.all(5),
+                                            child: Text(tableListtitle[i]),),
+                                              Container(
+                                                padding:EdgeInsets.all(5),
+                                                child: Text(prices[i]+" Kc"),),                                              Container(
+                                                padding:EdgeInsets.all(5),
+                                                child: Text("0 Kc"),)
+
+
+                                            ] )
+
+
+                                    ],
+                                  )
                                   ],),
                                 Container(
 

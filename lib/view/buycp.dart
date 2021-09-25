@@ -15,8 +15,8 @@ class _BuyCPState extends State<BuyCP> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: NavigationDrawerWidget(),
-      appBar: header(context,"buypass"),
-      bottomNavigationBar: MyBottomApp(context,"buypass"),
+      appBar: header(context,"mypass"),
+      bottomNavigationBar: MyBottomApp(context,"mypass"),
 
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,

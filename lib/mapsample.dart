@@ -19,10 +19,7 @@ late LatLng konum;
   MapType currentType=MapType.normal;
 
 
-  static final CameraPosition _kGooglePlex = CameraPosition(
-    target: LatLng(45.521563, -122.677433),
-    zoom: 14.4746,
-  );
+
   static const LatLng _center = const LatLng(46.521563, -122.677433);
   late CameraPosition _kLake;
 
@@ -104,6 +101,7 @@ late LatLng konum;
       markerId: MarkerId('id-1'),
         position: konum,
     ));
+    print("Set içi : "+_markers.toString());
   });
   }
   void _onAddMarkerButtonPressed() {

@@ -85,8 +85,8 @@ Widget  MyBottomApp(BuildContext context,String name,) {
                 IconButton(
                     icon: name=="buypass"? Icon(Icons.female,color:Colors.orangeAccent,size: 20,): Icon(Icons.female,color:Colors.black,size: 20,),
                     onPressed: () {
-                      Navigator.pushNamedAndRemoveUntil(context, "/buycp", (route) => false);
-                      print("buycp'a geçildi");
+                      Navigator.pushNamedAndRemoveUntil(context, "/buycoolpass", (route) => false);
+                      print("buycoolpass'e geçildi");
                     }),
                 name=="buypass"? Text("Buy CP",style: style2,):Text("Buy CP",style: style1,)
 
@@ -128,6 +128,8 @@ PreferredSizeWidget header(BuildContext context,String name) {
       centerTitle: true,
       title: name=="homepage" ?Text("PRAGUE CoolPass", style: titlestyle,):
       name=="attractions" ? Text("Attractions", style: titlestyle,):
+      name=="attractions1" ? Text("Attractions", style: titlestyle,):
+
       name=="mypass" ? Text("My Pass", style: titlestyle,):
       name=="buypass"? Text("Buy Pass", style: titlestyle,):
       name=="faq"? Text("FAQ", style: titlestyle,):name=="currentnotices"? Text("Current Notices",style: titlestyle,):
@@ -210,7 +212,9 @@ PreferredSizeWidget header(BuildContext context,String name) {
                         icon: Icon(Icons.filter_list, color: Colors.black,),
                         label: Text("Filter", style: TextStyle(
                             color: Colors.black)),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushNamed(context, "/detailfilter");
+                        },
                         style: ElevatedButton.styleFrom(
                           primary: Colors.white,
                           elevation: 0.0,
@@ -229,7 +233,13 @@ PreferredSizeWidget header(BuildContext context,String name) {
           ),
         ),
 
-      ) : null,
+      ) : name=="attractions1"?PreferredSize(
+
+        preferredSize: Size.fromHeight(50),
+        child: Container(
+
+        )
+      ):null,
     ),
   );
 }

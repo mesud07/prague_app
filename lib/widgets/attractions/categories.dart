@@ -23,9 +23,10 @@ class _CategoriesState extends State<Categories> {
               return ListView.builder(
                   shrinkWrap: true,
                   scrollDirection: Axis.horizontal,
-                  itemCount: 6,
+                  itemCount: snapshot.data!.length,
                   itemBuilder: (context, index) {
                     var category_id =snapshot.data![index]['_id'];
+                    print(category_id);
                     // debugPrint(snapshot.data![index]['content']['en']['title']);
 
                     return InkWell(

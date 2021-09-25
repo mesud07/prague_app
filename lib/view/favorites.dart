@@ -6,7 +6,6 @@ import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:prague_app/helper/datahelper.dart';
 import 'package:prague_app/services/all_Attractions.dart';
-import 'package:prague_app/utils/box_manager.dart';
 import 'package:prague_app/utils/widgets/appbar.dart';
 
 
