@@ -2,7 +2,8 @@
 
 İndirme Linki aşağıdadır.
 
-https://dosya.co/k8mierpmtkfa/prague-cool-pass.apk.html
+https://dosya.co/500owcsa82an/app-release.apk.html
+
 
 
 
