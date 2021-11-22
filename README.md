@@ -1,6 +1,7 @@
 # prague_app
 
-İndirme Linki aşağıdadır.
+Download link is below.
+Codes are in the master branch.
 
 https://dosya.co/500owcsa82an/app-release.apk.html
 
