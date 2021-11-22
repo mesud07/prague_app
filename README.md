@@ -5,23 +5,18 @@
 https://dosya.co/500owcsa82an/app-release.apk.html
 
 
+I made travel guide app for prague city.I made the application using with the source of the company I interned with
 
+Application functions:
 
-Prag şehrini tanıtan bir uygulama yapmaktayım. Uygulamayı staj yaptığım firmanın API'lerini kullanarak yaptım. Şuanda Online olarak çalışıyor.
+This app have various tour and events also 120 different to visit places.
 
-Uygulamanın özellikleri:
+If you want to add for like places to favorite list. You can do this
 
-Çeşitli tur ve etkinlikler 120 tane farklı türde gezilecek yerleri barındırıyor.
+You can access to all places on the map.
 
-İster filtreleyerek sadece hedeflediğiniz mekanları getirebilir ister favoriye ekleyip   farklı bir sayfada inceleyebilirsiniz.
+It have emergency numbers about prague city
 
-Map üzerinde tüm mekanlara erişilebiliyor.İlgili yerin telefon ve diğer bilgilerine ulaşabilir.
-
-Prag ile alakalı acil numaraları içinde barındırıyor.
-
-Şuanda sadece ingilizce olarak kullanılabilen app'i 12 farklı dilde kullanılabilecek şekilde düzenleyeceğim.
-
-Projeye devam etmekteyim.
  <h1>Anasayfa</h1>
  
 ![screenshot](https://user-images.githubusercontent.com/56825677/132834894-bd14cd6f-6418-469c-804a-6760f178ef0a.png)
