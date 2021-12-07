@@ -3,7 +3,7 @@
 Download link is below !!
 Codes are in the master branch !!
 
-https://dosya.co/500owcsa82an/app-release.apk.html
+
 
 
 I made travel guide app for prague city.I made the application using with the source of the company I interned with
