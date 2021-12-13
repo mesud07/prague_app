@@ -1,10 +1,5 @@
 # prague_app
 
-Download link is below !!
-Codes are in the master branch !!
-
-
-
 
 I made travel guide app for prague city.I made the application using with the source of the company I interned with
 
